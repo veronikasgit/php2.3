@@ -1,11 +1,24 @@
 <?php
-var_dump($_GET);
-exit;
+//var_dump($_GET);
+//echo '<br>';
+$mark = $_GET['mark'];
+//echo $mark;
+//echo '<br>';
 
-$code = $_GET['i'];
+if ($mark == 0) {
+	$code = 2;
+} elseif ($mark == 1) {
+	$code = 3;
+} elseif ($mark == 2) {
+	$code = 4;
+} elseif ($mark == 3) {
+	$code = 5;	
+}
 //код генерации картинки
 
-$image = imagecreatetruecolor(400, 300);
+//echo $code;
+
+$image = imagecreatetruecolor(410, 315);
 
 //RGB
 $backColor = imagecolorallocate($image, random_int(1, 255), random_int(1, 255), 221);
@@ -28,7 +41,7 @@ if (!file_exists($fontFile)) {
 	exit;
 }
 
-imagettftext($image, 100, 30, 90, 250, $textColor, $fontFile, $code);
+imagettftext($image, 100, 30, 190, 200, $textColor, $fontFile, $code);
 header('Content-Type: image/png');
 
 imagepng($image); //после этой строки в браузер уходит картинка

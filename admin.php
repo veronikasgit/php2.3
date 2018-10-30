@@ -2,10 +2,9 @@
 
 if(isset($_POST['button'])) {
 	if (!empty($_FILES) && array_key_exists('test', $_FILES)) {
-	//echo '<pre>';
-	//	var_dump($_FILES);
+	
 		$f_type = $_FILES['test']['type'];
-		//var_dump($f_type);
+	
 		if ($f_type === "application/json")	 {
 			$hash = ($_FILES['test']['name'].time());
 			move_uploaded_file($_FILES['test']['tmp_name'], "./tests/$hash.json");
@@ -14,10 +13,9 @@ if(isset($_POST['button'])) {
 		} elseif ($f_type !== "application/json") {
 		echo "Неверный формат файла! Попробуйте еще раз!";
 		}
-		
+
 	} 
 }
-
 
 ?>
 

@@ -23,56 +23,41 @@ foreach ($filelist as  $key => $filename) {
 }
 
 if (isset($_POST['button'])) {
-	//echo '$_POST';
-	//echo '<br>';
-	//var_dump($_POST);
-//	echo '<br>';
+
 	if (!empty($_POST['name'])) {
 		echo $_POST['name'] . "!" . '<br>'; 
 		echo '<br>';	
 	} 
-
+$mark = 0;
 	foreach($json as $number => $questions) {
-		//echo '$questions';
-	//	
-	//var_dump($questions);
-	//	echo '<br>';
-	$mark = 0;
-	$i = 0;
+	
 		if (empty($_POST['q' . $number])) {
+			
 			echo $questions['question'] . " - Вы не ответили на данный вопрос" . '<br>';
+
 		} elseif ($_POST['q' . $number] === $questions['rightAnswer']) {
 
-			echo $questions['question'] . " - Вы ответили верно!" . '<br>'; 		
+			echo $questions['question'] . " - Вы ответили верно!" . '<br>'; 	
 			
 			$mark++;
+
 		} else {
 
 				echo  $questions['question'] . " - Вы ответили неверно! Правильный ответ - {$questions['rightAnswer']}" . '<br>';					
 		}
-$i++;
-	}
-	echo '<br>';
-	echo ' <a href="admin.php">Загрузить новый тест</a>';
-	echo '<br>';
-	echo '<br>';
-	echo ' <a href="list.php">Перейти к списку тестов</a>';
 
-		echo '<br>';
-	echo '$mark';
-	echo '<br>';
-		echo '<br>';
+	}
 	
-		echo $mark;
-			echo '<br>';
-		echo '$i';
-	echo '<br>';
-		echo $i;
-	echo '<img src="img.php" />';
-	exit;
+	echo '<br>' . "Правильных ответов - $mark" . '<br>';
+
+	echo '<br>' . "<img src='img.php?mark=$mark'. />" . '<br>';
+
+	echo '<br>' . '<a href="admin.php">Загрузить новый тест</a>' . '<br>';	
+	echo '<br>' . '<a href="list.php">Перейти к списку тестов</a>' . '<br>' . '<br>';
+
+exit;
 
 	}
-//}
 
 ?>
 
